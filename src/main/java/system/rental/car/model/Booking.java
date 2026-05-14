@@ -14,11 +14,18 @@ public class Booking {
     private Customer customer;
     private Vehicle vehicle;
     private int days;
+    private String model;
     private BookingStatus status;
 
     public Booking(int bookingId, Customer customer, Vehicle vehicle, int days){
         this.status = status.PENDING;
         this.bookingId = bookingId;
+        this.customer = customer;
+        this.vehicle = vehicle;
+        this.days = days;
+    }
+
+    public Booking(Customer customer, Vehicle vehicle, int days){
         this.customer = customer;
         this.vehicle = vehicle;
         this.days = days;
