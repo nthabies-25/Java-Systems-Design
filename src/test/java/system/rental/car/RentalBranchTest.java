@@ -5,6 +5,7 @@ import com.rental.service.EconomyBranch;
 import com.rental.service.RentalBranch;
 
 import org.junit.jupiter.api.Test;
+import system.rental.car.RentalBranch;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -12,7 +13,7 @@ public class RentalBranchTest {
 
     @Test
     void shouldAddVehicle() {
-        RentalBranch branch = new EconomyBranch("Budget Rentals");
+        system.rental.car.RentalBranch branch = new EconomyBranch("Budget Rentals");
 
         Vehicle vehicle = new Vehicle("Toyota Corolla", 450.0);
 

@@ -17,6 +17,7 @@ public abstract class RentalBranch {
     private int bookingCounter;
 
 
+
     public RentalBranch(String branchName) {
         this.branchName = branchName;
         this.vehicles = new HashMap<>();
@@ -42,7 +43,7 @@ public abstract class RentalBranch {
         return new HashMap<>(vehicles);
     }
 
-    public Vehicle createBooking(Customer customer, String model, int days){
+    public void createBooking(Customer customer, String model, int days){
         Vehicle vehicle = vehicles.get(model);
         if (vehicle.isAvailable()){
             Booking booking = new Booking(customer, vehicle, days);
@@ -54,6 +55,48 @@ public abstract class RentalBranch {
         throw new IllegalArgumentException("The vehicle is unavailable");
     }
 
-    
-          
+    public void processRental(Booking booking){
+    }
+
+    public Booking processNextBooking(Customer customer, String model){
+        for (Booking booking : bookings){
+            if (booking.status() == Booking.BookingStatus.PENDING){
+                booking.updateStatus(Booking.BookingStatus.IN_PROGRESS);
+
+                processRental(booking);
+                booking.updateStatus(Booking.BookingStatus.APPROVED);
+
+
+
+                Vehicle vehicle = vehicles.get(model);
+                if (vehicle.isAvailable()){
+                    vehicle.setAvailable(false);
+                }
+                return booking;
+            }
+        }
+        return null;
+    }
+
+    public List<Booking> bookings(){
+        return new ArrayList<>(this.bookings);
+    }
+
+    public String branchName(){
+        return branchName;
+    }
+
+    public double totalRevenue(){
+        double total = 0;
+        for (Booking b1 : bookings){
+            Booking booking = null;
+            if (booking.status() == Booking.BookingStatus.APPROVED){
+                total+= (booking.vehicle().dailyRate()) * booking.day();
+
+
+            }
+
+        }
+        return total;
+    }
 } 

@@ -7,6 +7,9 @@ public class Vehicle {
     private boolean  available;
 
     public Vehicle(String model, double dailyRate) {
+        if (dailyRate <= 0){
+            throw new IllegalArgumentException("Rate cannot be negative");
+        }
         this.model = model;
         this.dailyRate = dailyRate;
         this.available = true;
@@ -20,7 +23,7 @@ public class Vehicle {
     }
 
     public void updateDailyRate(double rate){
-        if (dailyRate < 0){
+        if (dailyRate <= 0){
             throw new IllegalArgumentException("Rate cannot be negative");
         }
         this.dailyRate = rate;

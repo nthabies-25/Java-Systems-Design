@@ -1,6 +1,9 @@
-package com.rental;
+package system.rental.car;
 
-import com.rental.model.*;
+import system.rental.car.model.Booking;
+import system.rental.car.model.Customer;
+import system.rental.car.model.Vehicle;
+
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

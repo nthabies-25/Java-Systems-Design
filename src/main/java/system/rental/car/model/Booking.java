@@ -6,7 +6,7 @@ public class Booking {
         PENDING,
         IN_PROGRESS,
         CANCELLED,
-        COMPLETED
+        APPROVED
     }
 
 
@@ -18,6 +18,7 @@ public class Booking {
     private BookingStatus status;
 
     public Booking(int bookingId, Customer customer, Vehicle vehicle, int days){
+
         this.status = status.PENDING;
         this.bookingId = bookingId;
         this.customer = customer;

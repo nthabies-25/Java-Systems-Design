@@ -1,6 +1,7 @@
 package system.rental.car;
 
 import system.rental.car.model.*;
+
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,7 +19,7 @@ public class BookingTest {
         assertEquals(customer, booking.customer());
         assertEquals(vehicle, booking.vehicle());
         assertEquals(5, booking.days());
-        assertEquals(BookingStatus.PENDING, booking.status());
+        assertEquals(Booking.BookingStatus.PENDING, booking.status());
     }
 
     @Test
@@ -38,9 +39,9 @@ public class BookingTest {
 
         Booking booking = new Booking(1, customer, vehicle, 2);
 
-        booking.updateStatus(BookingStatus.APPROVED);
+        booking.updateStatus(Booking.BookingStatus.APPROVED);
 
-        assertEquals(BookingStatus.APPROVED, booking.status());
+        assertEquals(Booking.BookingStatus.APPROVED, booking.status());
     }
 
     @Test
