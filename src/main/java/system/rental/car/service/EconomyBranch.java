@@ -1,7 +1,6 @@
 package system.rental.car.service;
 
 import system.rental.car.model.Booking;
-import system.rental.car.model.Customer;
 import system.rental.car.model.Vehicle;
 
 public class EconomyBranch extends RentalBranch {
