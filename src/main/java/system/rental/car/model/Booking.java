@@ -35,6 +35,10 @@ public class Booking {
         return dailyRate * days;
     }
 
+    public void setStatus( BookingStatus status) {
+        this.status = status;
+    }
+
     public void updateStatus(BookingStatus statusUpdated){
         this.status = statusUpdated;
     }

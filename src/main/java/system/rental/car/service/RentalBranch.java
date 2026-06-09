@@ -1,8 +1,13 @@
 package system.rental.car.service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import system.rental.car.model.*;
+import system.rental.car.model.Booking;
+import system.rental.car.model.Customer;
+import system.rental.car.model.Vehicle;
 
 public abstract class RentalBranch {
     private String branchName;
@@ -40,13 +45,29 @@ public abstract class RentalBranch {
 
     }
 
-    public void processNextBooking(Booking booking){
+    public Booking processNextBooking(){
         for (Booking booking : bookings){
-            if (status == PENDING){
-                Booking.BookingStatus.APPROVED;
+            if (booking.status() == Booking.BookingStatus.PENDING){
+                booking.setStatus(Booking.BookingStatus.IN_PROGRESS);
+                booking.setStatus(Booking.BookingStatus.APPROVED);
+
+                processRental(booking);
+                booking.vehicle().setAvailable(false);
+
             }
+            return booking;
 
         }
+        return null;
+    }
+
+    public Booking processNextBookingss(Booking booky){
+        if (bookings.contains(booky)){
+            processRental(booky);
+            booky.vehicle().setAvailable(false);
+
+        }
+        return booky;
     }
 
     public List<Booking> boookings(){
