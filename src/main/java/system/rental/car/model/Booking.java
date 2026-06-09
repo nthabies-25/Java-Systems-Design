@@ -2,58 +2,47 @@ package system.rental.car.model;
 
 public class Booking {
 
-    public enum BookingStatus{
+    public enum BookingStatus {
         PENDING,
         IN_PROGRESS,
-        CANCELLED,
         APPROVED
     }
-
-
     private int bookingId;
     private Customer customer;
     private Vehicle vehicle;
     private int days;
-    private String model;
     private BookingStatus status;
 
-    public Booking(int bookingId, Customer customer, Vehicle vehicle, int days){
-
-        this.status = status.PENDING;
+    public Booking(int bookingId, Customer customer, Vehicle vehicle, int days) {
+        this.status = BookingStatus.PENDING;
+        if (days < 0){
+            throw new IllegalArgumentException();
+        }
+        this.days =days;
         this.bookingId = bookingId;
         this.customer = customer;
         this.vehicle = vehicle;
-        this.days = days;
     }
 
-    public Booking(Customer customer, Vehicle vehicle, int days){
-        this.customer = customer;
-        this.vehicle = vehicle;
-        this.days = days;
+    public int bookingId() { return bookingId;}
+    public Customer customer() { return customer;}
+    public Vehicle vehicle() { return vehicle;}
+    public int days() { return days;}
+    public BookingStatus status() { return status;}
+
+    public int totalCost() {
+        int dailyRate = 0;
+        return dailyRate * days;
     }
 
-    public int bookingId()  {return bookingId;}
-    public Customer customer()  {return customer;}
-    public Vehicle vehicle()    {return vehicle;}
-    public int day()    {return days;}
-    public BookingStatus status()   {return status;}
-
-    public double totalCost() {
-        double v = vehicle.dailyRate() * days;
-        return v;
-    }
-
-    public void updateStatus(BookingStatus updatedStatus) {
-        this.status = updatedStatus;
-
+    public void updateStatus(BookingStatus statusUpdated){
+        this.status = statusUpdated;
     }
 
     @Override
     public String toString(){
-        return bookingId() + " " 
-        + customer() + " " 
-        + vehicle() + " "
-        + day() + " "
-        + status();
+        return bookingId() + " " + customer() + " "
+                + vehicle() + " " + days() + " " + status();
     }
+
 }
